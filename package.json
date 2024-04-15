@@ -1,0 +1,16 @@
+{
+  "name": "teste-cucumber-google",
+  "version": "1.0.0",
+  "description": "Testes de Cucumber.js para acessar o Google",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "keywords": [],
+  "author": "Seu Nome",
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber": "^7.10.1",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
