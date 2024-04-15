@@ -85,7 +85,45 @@ module.exports = {
 
     //Cenário 2: Traçar rota clicando no mapa
     clickPinButtonOrigin: async function () {
-        // TODO: Implementar clique no botão pin referente ao endereço de origem
+        await action.elementClickById(
+            TRACAR_ROTAS_ELEMENTS.BUTTON_REMOVE_ORIGIN,
+            driver
+        );
+        await action.elementClickById(
+            TRACAR_ROTAS_ELEMENTS.BUTTON_REMOVE_DESTINY,
+            driver
+        );
+        await action.delay(2000);
+
+        await action.elementClickByXpath(
+            TRACAR_ROTAS_ELEMENTS.BUTTON_PIN_ORIGIN,
+            driver
+        );
+    },
+
+    clickMapPointOrigin: async function (x, y) {
+        await action.clickPointInCanvas(
+            TRACAR_ROTAS_ELEMENTS.CANVAS,
+            x,
+            y,
+            driver
+        );
+    },
+
+    clickPinButtonDestiny: async function () {
+        await action.elementClickByXpath(
+            TRACAR_ROTAS_ELEMENTS.BUTTON_PIN_DESTINY,
+            driver
+        );
+    },
+
+    clickMapPointDestiny: async function (x, y) {
+        await action.clickPointInCanvas(
+            TRACAR_ROTAS_ELEMENTS.CANVAS,
+            x,
+            y,
+            driver
+        );
     },
 
     inverterRota: async function () {

@@ -15,11 +15,11 @@ Feature: Traçar Rota
     And preencho o endereço de destino com "Mariana, MG"
     Then a rota será traçada no mapa
 
-  # @AdicionandoCamposAtravesDoBotaoPin
-  # Scenario: Adicionando campos através do botão de pin
-  #   Given clico no botão pin referente ao endereço de origem
-  #   And clico em um ponto específico no mapa para o endereço de origem
-  #   And clico no botão pin referente ao endereço de destino
-  #   And clico em um ponto específico no mapa para o endereço de destino
-  #   Then a rota será traçada no mapa
+  @AdicionandoCamposAtravesDoBotaoPin
+  Scenario: Adicionando campos através do botão de pin
+    Given clico no botão pin referente ao endereço de origem
+    And clico em um ponto no mapa para o endereço de origem
+    And clico no botão pin referente ao endereço de destino
+    And clico em um ponto para o endereço de destino
+    Then a rota será traçada no mapa a partir dos locais clicados
 

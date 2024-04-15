@@ -25,43 +25,42 @@ Given("preencho o endereço de origem com {string}", async function (origin) {
 
 Given("preencho o endereço de destino com {string}", async function (destiny) {
     await paginaRotas.populateDestiny(destiny);
+    await paginaRotas.traceRoute();
     await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
 });
 
 Then("a rota será traçada no mapa", async function () {
-    await paginaRotas.traceRoute();
     await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
     //TODO: Implementar verificação de rota traçada no mapa
+    return "pending";
 });
 
 //Cenário 2: Traçar rota clicando no mapa
-// Given("clico no botão pin referente ao endereço de origem", function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-// });
+Given("clico no botão pin referente ao endereço de origem", async function () {
+    await paginaRotas.clickPinButtonOrigin();
+    await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
+});
 
-// Given(
-//     "clico em um ponto específico no mapa para o endereço de origem",
-//     function () {
-//         // Write code here that turns the phrase above into concrete actions
-//         return "pending";
-//     }
-// );
+Given("clico em um ponto no mapa para o endereço de origem", async function () {
+    x = 50;
+    y = 100;
+    await paginaRotas.clickMapPointOrigin(x, y);
+    await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
+});
 
-// Given("clico no botão pin referente ao endereço de destino", function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-// });
+Given("clico no botão pin referente ao endereço de destino", async function () {
+    await paginaRotas.clickPinButtonDestiny();
+    await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
+});
 
-// Given(
-//     "clico em um ponto específico no mapa para o endereço de destino",
-//     function () {
-//         // Write code here that turns the phrase above into concrete actions
-//         return "pending";
-//     }
-// );
+Given("clico em um ponto para o endereço de destino", async function () {
+    x = 40;
+    y = 100;
+    await paginaRotas.clickMapPointDestiny(x, y);
+    await basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
+});
 
-// Then("a rota será traçada no mapa", function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-// });
+Then("a rota será traçada no mapa a partir dos locais clicados", function () {
+    //TODO: Implementar verificação de rota traçada no mapa
+    return "pending";
+});

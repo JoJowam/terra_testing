@@ -61,6 +61,24 @@ module.exports = {
         }
     },
 
+    clickPointInCanvas: async function (canvasCssSelector, x, y, driver) {
+        try {
+            const canvas = await driver.findElement(By.css(canvasCssSelector));
+
+            await driver
+                .actions()
+                .move({ origin: canvas, x: x, y: y })
+                .click()
+                .perform();
+        } catch (error) {
+            console.error(
+                `Falha ao clicar no ponto (${x}, ${y}) no elemento canvas com seletor CSS ${canvasCssSelector}:`,
+                error
+            );
+            throw error;
+        }
+    },
+
     delay: async function (timeout) {
         try {
             await new Promise((resolve) => setTimeout(resolve, timeout));
