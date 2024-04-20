@@ -3,6 +3,7 @@ const { TRACAR_ROTAS_ELEMENTS } = require("../worlds/elements");
 const action = require("../worlds/basic_operations");
 const chrome = require("selenium-webdriver/chrome");
 
+//TODO: Iniciar esse driver globalmente e utilizar o mesmo em todas as pages
 let driver = new Builder()
     .forBrowser("chrome")
     .setChromeOptions(
