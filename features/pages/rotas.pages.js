@@ -1,147 +1,142 @@
-const { Builder, By, until } = require("selenium-webdriver");
+const { By } = require("selenium-webdriver");
 const { TRACAR_ROTAS_ELEMENTS } = require("../worlds/elements");
 const action = require("../worlds/basic_operations");
-const chrome = require("selenium-webdriver/chrome");
+const driverManager = require("../worlds/driver");
 
-//TODO: Iniciar esse driver globalmente e utilizar o mesmo em todas as pages
-let driver = new Builder()
-    .forBrowser("chrome")
-    .setChromeOptions(
-        new chrome.Options().addArguments(
-            "--disable-gpu",
-            "--no-sandbox",
-            "--disable-dev-shm-usage"
-        )
-    )
-    .build();
+class RotasPages {
+    constructor() {
+        this.driver = driverManager.getDriver();
+    }
 
-module.exports = {
-    openInitialPage: async function () {
-        await driver.get(TRACAR_ROTAS_ELEMENTS.BASE_URL);
-    },
+    async openInitialPage() {
+        await this.driver.get(TRACAR_ROTAS_ELEMENTS.BASE_URL);
+    }
 
-    controlHudClick: async function () {
+    async controlHudClick() {
         await action.elementClickByCss(
             TRACAR_ROTAS_ELEMENTS.BUTTON_CONTROLHUD,
-            driver
+            this.driver
         );
-    },
+    }
 
-    menuRoutesClick: async function () {
+    async menuRoutesClick() {
         await action.elementClickByCss(
             TRACAR_ROTAS_ELEMENTS.BUTTON_MENUROUTES,
-            driver
+            this.driver
         );
-    },
+    }
 
-    populateOrigin: async function (origin) {
+    async populateOrigin(origin) {
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.INPUT_ORIGIN,
-            driver
+            this.driver
         );
 
         await action.elementSendKeysById(
             TRACAR_ROTAS_ELEMENTS.INPUT_ORIGIN,
             origin,
-            driver
+            this.driver
         );
 
         await action.waitForElementLocatedById(
             TRACAR_ROTAS_ELEMENTS.AUTOCOMPLETE,
             50000,
-            driver
+            this.driver
         );
 
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.AUTOCOMPLETE,
-            driver
+            this.driver
         );
-    },
+    }
 
-    populateDestiny: async function (destination) {
+    async populateDestiny(destination) {
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.INPUT_DESTINY,
-            driver
+            this.driver
         );
 
         await action.elementSendKeysById(
             TRACAR_ROTAS_ELEMENTS.INPUT_DESTINY,
             destination,
-            driver
+            this.driver
         );
-    },
+    }
 
-    traceRoute: async function () {
+    async traceRoute() {
         await action.waitForElementLocatedById(
             TRACAR_ROTAS_ELEMENTS.AUTOCOMPLETE,
             50000,
-            driver
+            this.driver
         );
 
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.AUTOCOMPLETE,
-            driver
+            this.driver
         );
-    },
+    }
 
-    //Cenário 2: Traçar rota clicando no mapa
-    clickPinButtonOrigin: async function () {
+    async clickPinButtonOrigin() {
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.BUTTON_REMOVE_ORIGIN,
-            driver
+            this.driver
         );
         await action.elementClickById(
             TRACAR_ROTAS_ELEMENTS.BUTTON_REMOVE_DESTINY,
-            driver
+            this.driver
         );
         await action.delay(2000);
 
         await action.elementClickByXpath(
             TRACAR_ROTAS_ELEMENTS.BUTTON_PIN_ORIGIN,
-            driver
+            this.driver
         );
-    },
+    }
 
-    clickMapPointOrigin: async function (x, y) {
+    async clickMapPointOrigin(x, y) {
         await action.clickPointInCanvas(
             TRACAR_ROTAS_ELEMENTS.CANVAS,
             x,
             y,
-            driver
+            this.driver
         );
-    },
+    }
 
-    clickPinButtonDestiny: async function () {
+    async clickPinButtonDestiny() {
         await action.elementClickByXpath(
             TRACAR_ROTAS_ELEMENTS.BUTTON_PIN_DESTINY,
-            driver
+            this.driver
         );
-    },
+    }
 
-    clickMapPointDestiny: async function (x, y) {
+    async clickMapPointDestiny(x, y) {
         await action.clickPointInCanvas(
             TRACAR_ROTAS_ELEMENTS.CANVAS,
             x,
             y,
-            driver
+            this.driver
         );
-    },
+    }
 
-    inverterRota: async function () {
-        await driver.findElement(By.id("button-revert-routes")).click();
-    },
+    async inverterRota() {
+        await this.driver.findElement(By.id("button-revert-routes")).click();
+    }
 
-    salvarRota: async function () {
+    async salvarRota() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        await driver.findElement(By.css("#button-add-direction")).click();
-    },
+        await this.driver.findElement(By.css("#button-add-direction")).click();
+    }
 
-    expandirRotas: async function () {
-        await driver.findElement(By.id("radix-:r4:")).click();
-    },
+    async expandirRotas() {
+        await this.driver.findElement(By.id("radix-:r4:")).click();
+    }
 
-    limparRota: async function () {
+    async limparRota() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        await driver.findElement(By.css("button.sc-fjvvzt.gBpAAw")).click();
-    },
-};
+        await this.driver
+            .findElement(By.css("button.sc-fjvvzt.gBpAAw"))
+            .click();
+    }
+}
+
+module.exports = new RotasPages();

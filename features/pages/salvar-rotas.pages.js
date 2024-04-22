@@ -1,5 +1,19 @@
-const { Builder, By, until } = require("selenium-webdriver");
-const { TRACAR_ROTAS_ELEMENTS } = require("../worlds/elements");
+const { By } = require("selenium-webdriver");
+const { SALVAR_ROTAS_ELEMENTS } = require("../worlds/elements");
 const action = require("../worlds/basic_operations");
-const chrome = require("selenium-webdriver/chrome");
+const driverManager = require("../worlds/driver");
 
+class SalvarRotasPages {
+    constructor() {
+        this.driver = driverManager.getDriver();
+    }
+
+    async addRoutesClick() {
+        await action.elementClickById(
+            SALVAR_ROTAS_ELEMENTS.BUTTON_ADDROUTES,
+            this.driver
+        );
+    }
+}
+
+module.exports = new SalvarRotasPages();

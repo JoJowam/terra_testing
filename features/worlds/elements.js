@@ -14,6 +14,19 @@ const TRACAR_ROTAS_ELEMENTS = {
     CANVAS: "canvas",
 };
 
+const SALVAR_ROTAS_ELEMENTS = {
+    BUTTON_ADDROUTES: "button-add-direction",
+};
+
+const LIMPAR_ROTAS_ELEMENTS = {
+    CLEAR_ROUTE_BUTTON: "//button[@id='button-clear-routes'][2]",
+    ROUTE_STACK_MENU_BUTTON: "#radix-\\3Ar4\\3A > svg",
+    ROUTE_IN_ROUTE_STACK_BUTTON:
+        "div.sc-fXSgeo.fLmnEI:contains('Ouro Preto > Mariana')",
+};
+
 module.exports = {
     TRACAR_ROTAS_ELEMENTS,
+    SALVAR_ROTAS_ELEMENTS,
+    LIMPAR_ROTAS_ELEMENTS,
 };

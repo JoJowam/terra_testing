@@ -79,6 +79,18 @@ module.exports = {
         }
     },
 
+    clickElementContainingText: async function (selector, text, driver) {
+        const elements = await driver.findElements(By.css(selector));
+        for (const element of elements) {
+            const elementText = await element.getText();
+            if (elementText.includes(text)) {
+                await element.click();
+                return;
+            }
+        }
+        console.error(`Element with text '${text}' not found`);
+    },
+
     delay: async function (timeout) {
         try {
             await new Promise((resolve) => setTimeout(resolve, timeout));
