@@ -24,7 +24,7 @@ Given("clico na aba de pilha rotas", async function () {
 
 Given("clico em uma rota da pilha de rotas", async function () {
     await LimparRotasPage.selectRouteInRouteStack();
-    basic_operations.delay(3000);
+    basic_operations.delay(DELAY_TIME_IN_MILLISECONDS);
 });
 
 Given("clico no botão para limpar a rota selecionada", async function () {

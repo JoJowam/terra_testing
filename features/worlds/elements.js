@@ -29,9 +29,15 @@ const INVERTER_ROTAS_ELEMENTS = {
     INVERT_ROUTE_BUTTON: "button-revert-routes",
 };
 
+const EXCLUIR_ROTAS_ELEMENTS = {
+    REMOVE_ROUTE_BUTTON: ".sc-fjvvzt > svg",
+};
+
 module.exports = {
+    //TODO: Pesquisar melhores formas de se performar ações em elementos
     TRACAR_ROTAS_ELEMENTS,
     SALVAR_ROTAS_ELEMENTS,
     LIMPAR_ROTAS_ELEMENTS,
     INVERTER_ROTAS_ELEMENTS,
+    EXCLUIR_ROTAS_ELEMENTS,
 };

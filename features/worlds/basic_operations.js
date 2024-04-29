@@ -1,8 +1,23 @@
-const { Builder, By, until } = require("selenium-webdriver");
+const { By, until } = require("selenium-webdriver");
 
 module.exports = {
     elementClickByCss: async function (element, driver) {
+        //TODO: Implementar um modo de esperar por um tempo antes de clicar no botão
         try {
+            await driver.findElement(By.css(element)).click();
+        } catch (error) {
+            console.error(
+                `Falha ao clicar no elemento com seletor CSS ${element}:`,
+                error
+            );
+            throw error;
+        }
+    },
+
+    elementClickBefore2SecByCss: async function (element, driver) {
+        //TODO: Excluir método após implementar o método de espera na base
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 2000));
             await driver.findElement(By.css(element)).click();
         } catch (error) {
             console.error(
@@ -37,6 +52,18 @@ module.exports = {
         }
     },
 
+    elementClickByLinkText: async function (linkText, driver) {
+        try {
+            await driver.findElement(By.linkText(linkText)).click();
+        } catch (error) {
+            console.error(
+                `Falha ao clicar no elemento com o link text: "${linkText}":`,
+                error
+            );
+            throw error;
+        }
+    },
+
     elementSendKeysById: async function (element, keys, driver) {
         try {
             await driver.findElement(By.id(element)).sendKeys(keys);
@@ -55,6 +82,21 @@ module.exports = {
         } catch (error) {
             console.error(
                 `Falha ao localizar o elemento com ID ${elementId} dentro do tempo limite de ${timeout} ms:`,
+                error
+            );
+            throw error;
+        }
+    },
+
+    waitForElementLocatedByCss: async function (elementCss, timeout, driver) {
+        try {
+            await driver.wait(
+                until.elementLocated(By.css(elementCss)),
+                timeout
+            );
+        } catch (error) {
+            console.error(
+                `Falha ao localizar o elemento com CSS ${elementCss} dentro do tempo limite de ${timeout} ms.`,
                 error
             );
             throw error;
