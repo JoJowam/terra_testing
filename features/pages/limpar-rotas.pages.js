@@ -23,6 +23,7 @@ class LimparRotasPages {
     }
 
     async selectRouteInRouteStack() {
+        //FIXME: O botão de seleção de rota não possui um ID único
         await action.elementClickById("radix-:r4:", this.driver);
     }
 }

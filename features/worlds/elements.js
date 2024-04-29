@@ -25,8 +25,13 @@ const LIMPAR_ROTAS_ELEMENTS = {
         "div.sc-fXSgeo.fLmnEI:contains('Ouro Preto > Mariana')",
 };
 
+const INVERTER_ROTAS_ELEMENTS = {
+    INVERT_ROUTE_BUTTON: "button-revert-routes",
+};
+
 module.exports = {
     TRACAR_ROTAS_ELEMENTS,
     SALVAR_ROTAS_ELEMENTS,
     LIMPAR_ROTAS_ELEMENTS,
+    INVERTER_ROTAS_ELEMENTS,
 };
